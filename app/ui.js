@@ -164,6 +164,7 @@ var UI;
             UI.initSetting('clip', false);
             UI.initSetting('shared', true);
             UI.initSetting('view_only', true);
+            UI.initSetting('nginx', 'false');
             UI.initSetting('path', 'websockify');
             UI.initSetting('repeaterID', '');
             UI.initSetting('token', '');
@@ -424,6 +425,7 @@ var UI;
             document.getElementById('noVNC_setting_resize').disabled = UI.connected;
             document.getElementById('noVNC_setting_shared').disabled = UI.connected;
             document.getElementById('noVNC_setting_view_only').disabled = UI.connected;
+            document.getElementById('noVNC_setting_nginx').disabled = UI.connected;
             document.getElementById('noVNC_setting_path').disabled = UI.connected;
             document.getElementById('noVNC_setting_repeaterID').disabled = UI.connected;
 
@@ -754,6 +756,7 @@ var UI;
             UI.saveSetting('clip');
             UI.saveSetting('shared');
             UI.saveSetting('view_only');
+            UI.saveSetting('nginx');
             UI.saveSetting('path');
             UI.saveSetting('repeaterID');
             UI.saveSetting('stylesheet');
@@ -803,6 +806,7 @@ var UI;
             UI.updateSetting('resize');
             UI.updateSetting('shared');
             UI.updateSetting('view_only');
+            UI.updateSetting('nginx');
             UI.updateSetting('path');
             UI.updateSetting('repeaterID');
             UI.updateSetting('stylesheet');
@@ -974,6 +978,11 @@ var UI;
             var password = document.getElementById('noVNC_setting_password').value;
             var token = document.getElementById('noVNC_setting_token').value;
             var path = document.getElementById('noVNC_setting_path').value;
+            var nginx = document.getElementById('noVNC_setting_nginx').value;
+            if (nginx != false) {
+                // var proxy_pass_port = window.location.pathname.match(/\/proxy\/(\d+)/)[1];
+                path = "proxy/" + nginx + "/websockify";
+            }
 
             //if token is in path then ignore the new token variable
             if (token) {
