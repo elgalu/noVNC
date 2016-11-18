@@ -104,7 +104,7 @@ var UI;
 
             document.getElementById('noVNC_setting_host').focus();
 
-            var autoconnect = WebUtil.getConfigVar('autoconnect', false);
+            var autoconnect = WebUtil.getConfigVar('autoconnect', true);
             if (autoconnect === 'true' || autoconnect == '1') {
                 autoconnect = true;
                 UI.connect();
@@ -160,12 +160,14 @@ var UI;
             UI.initSetting('encrypt', (window.location.protocol === "https:"));
             UI.initSetting('true_color', true);
             UI.initSetting('cursor', !Util.isTouchDevice);
-            UI.initSetting('resize', 'off');
+            UI.initSetting('resize', 'scale');
+            UI.initSetting('clip', false);
             UI.initSetting('shared', true);
-            UI.initSetting('view_only', false);
+            UI.initSetting('view_only', true);
             UI.initSetting('path', 'websockify');
             UI.initSetting('repeaterID', '');
             UI.initSetting('token', '');
+            UI.initSetting('autoconnect', true);
         },
 
         setupWindowEvents: function() {
